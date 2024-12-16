@@ -1,66 +1,121 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Descripción de la API REST Desarrollada con Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+La API REST desarrollada con Laravel 11 permite gestionar un catálogo de personas con operaciones CRUD (Crear, Leer, Actualizar, Eliminar) y autenticación basada en tokens. Además, proporciona un endpoint de logout para finalizar las sesiones de usuario. Los endpoints de la API son los siguientes:
+Endpoints
 
-## About Laravel
+    POST /logout
+    Cierra la sesión del usuario autenticado y elimina el token de acceso.
+        Método: POST
+        Ruta: /logout
+        Controlador: AuthController@logout
+        Autenticación: Requiere un token de autenticación válido.
+        Respuesta: { "message": "Successfully logged out" }
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+    GET /persons
+    Obtiene la lista de todas las personas almacenadas en el sistema.
+        Método: GET
+        Ruta: /persons
+        Controlador: PersonController@index
+        Autenticación: Requiere un token de autenticación válido.
+        Respuesta: Un array de objetos con la información de cada persona.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+    POST /persons
+    Crea un nuevo registro de persona.
+        Método: POST
+        Ruta: /persons
+        Controlador: PersonController@store
+        Autenticación: Requiere un token de autenticación válido.
+        Datos: { "name": "John", "last_name": "Doe", "email": "johndoe@example.com", "date_born": "1990-01-01", "phone": "123456789", "address": "Some Address" }
+        Respuesta: Objeto con la persona creada.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+    GET /persons/{id}
+    Obtiene los detalles de una persona específica por su ID.
+        Método: GET
+        Ruta: /persons/{id}
+        Controlador: PersonController@show
+        Autenticación: Requiere un token de autenticación válido.
+        Respuesta: Objeto con los detalles de la persona solicitada.
 
-## Learning Laravel
+    PUT /persons/{id}
+    Actualiza la información de una persona existente.
+        Método: PUT
+        Ruta: /persons/{id}
+        Controlador: PersonController@update
+        Autenticación: Requiere un token de autenticación válido.
+        Datos: { "name": "Updated Name", "last_name": "Updated Last Name", "email": "updated@example.com", "date_born": "1991-02-01", "phone": "987654321", "address": "Updated Address" }
+        Respuesta: Objeto con la persona actualizada.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    DELETE /persons/{id}
+    Elimina un registro de persona del sistema.
+        Método: DELETE
+        Ruta: /persons/{id}
+        Controlador: PersonController@destroy
+        Autenticación: Requiere un token de autenticación válido.
+        Respuesta: { "message": "Person deleted successfully" }
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    Instalación del Proyecto
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    Para instalar y ejecutar esta API REST en tu entorno local, sigue estos pasos:
+    Requisitos Previos
 
-## Laravel Sponsors
+        PHP (versión 8.0 o superior).
+        Composer (gestor de dependencias de PHP).
+        MySQL o MariaDB (base de datos).
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    Clona el repositorio del proyecto:
 
-### Premium Partners
+    git clone https://github.com/yoswardn/paynau-test.git
+    cd paynau-test
+    cd backend
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    Instala las dependencias de PHP:
 
-## Contributing
+    composer install
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    Configura el archivo .env: Renombra el archivo .env.example a .env y edítalo con los detalles de tu base de datos:
 
-## Code of Conduct
+    mv .env.example .env
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    Edita las siguientes variables del archivo .env:
 
-## Security Vulnerabilities
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=nombre_de_tu_base_de_datos
+    DB_USERNAME=tu_usuario
+    DB_PASSWORD=tu_contraseña
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    Genera la clave de la aplicación:
 
-## License
+    php artisan key:generate
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    Crea la base de datos: Asegúrate de que la base de datos esté creada en MySQL o MariaDB:
+
+    CREATE DATABASE nombre_de_tu_base_de_datos;
+
+    Ejecuta las migraciones: Ejecuta las migraciones para crear las tablas necesarias en la base de datos:
+
+    php artisan migrate
+
+    Ejecuta los seeders: Si deseas poblar la base de datos con datos iniciales (como un usuario por defecto), puedes ejecutar los seeders:
+
+    php artisan db:seed
+
+    Inicia el servidor de desarrollo:
+
+    php artisan serve
+    Esto levantará el servidor en http://localhost:8000.
+
+    Documentación de la API
+
+    La documentación interactiva de la API está disponible utilizando Swagger. Para verla, simplemente navega a la siguiente URL después de haber iniciado el servidor:
+
+    http://localhost:8000/api/documentation#/
+    
+
+
+
+
+
+
+

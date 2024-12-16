@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Person extends Model
 {
@@ -36,4 +37,11 @@ class Person extends Model
         'phone',
         'address',
     ];
+
+    protected function fullName (): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value, $attributes) => $attributes['name'].' '.$attributes['last_name']
+        );
+    }
 }

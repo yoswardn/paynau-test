@@ -1,3 +1,9 @@
+@import 'primereact/resources/themes/saga-blue/theme.css';
+@import 'primereact/resources/primereact.min.css';
+@import 'primeicons/primeicons.css';
+@import 'primeflex/primeflex.css';
+
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -42,10 +48,9 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
-}
+} 
 button:hover {
   border-color: #646cff;
 }
@@ -66,3 +71,84 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.layout-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.layout-main {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.layout-toolbar {
+    margin-bottom: 10px;
+    background-color: #1976d2;
+    color: white;
+}
+
+.layout-toolbar-left {
+    font-size: 18px;
+}
+
+.layout-toolbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.p-button-danger {
+    background-color: #d32f2f;
+    border-color: #d32f2f;
+}
+
+/* login.css */
+html, body {
+    height: 100%;
+    margin: 0;    
+}
+
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    background-color: #f5f5f5; 
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 450px; 
+    margin: 0 1rem;  
+}
+
+.login-card {
+    width: 100%;
+    padding: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+.field {
+    margin-bottom: 1.5rem;
+}
+
+.p-fluid {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        padding: 0;
+    }
+
+    .login-card {
+        padding: 1.5rem; 
+    }
+}
+
+
